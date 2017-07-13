@@ -1,0 +1,29 @@
+---
+
+- hosts: ProdServers
+  sudo: yes
+  vars:
+    artifact_path: /ext/jenkins_home/workspace/Production_Machine_Provisioning/aviva.war
+  
+  tasks:
+  
+  - name: get process id for the running application
+    shell: |
+      id=`fuser 8080/tcp`
+      kill $id
+
+  - name: remove artifact
+    file:
+      state: absent
+      path: "/artifact/"
+
+  - name: copy artifact
+    copy:
+      src={{ artifact_path }}
+      dest=/artifact/aviva.war
+      owner=root
+      group=root
+      mode=0777
+      
+  - name: run application
+    shell: nohup java -jar /artifact/aviva.war &
