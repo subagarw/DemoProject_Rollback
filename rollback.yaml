@@ -16,14 +16,6 @@
     file:
       state: absent
       path: "/artifact/aviva.war"
-      
-  - name: create directory
-    file:
-      path=/artifact
-      state=directory
-      owner=root
-      group=root
-      mode=0777
 
   - name: copy artifact
     copy:
