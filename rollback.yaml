@@ -3,7 +3,7 @@
 - hosts: ProdServers
   sudo: yes
   vars:
-    artifact_path: /ext/jenkins_home/workspace/Production_Machine_Provisioning/aviva.war
+    artifact_path: /ext/jenkins_home/workspace/Validating_Approval/aviva.war
   
   tasks:
   
